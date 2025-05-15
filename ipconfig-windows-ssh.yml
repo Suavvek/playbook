@@ -2,13 +2,11 @@
 - name: Uruchom ipconfig na Windows przez SSH
   hosts: windows_ssh
   gather_facts: no
-
   tasks:
-    - name: Uruchom PowerShell script
-      shell: |
-        powershell.exe -Command "ipconfig /all"
-      register: output
+    - name: Wykonaj ipconfig
+      win_command: ipconfig
+      register: ipconfig_output
 
-    - name: Wyświetl wynik
+    - name: Wyświetl wynik ipconfig
       debug:
-        var: output.stdout
+        var: ipconfig_output.stdout_lines

@@ -1,0 +1,12 @@
+---
+- name: Uruchom ping na Windows przez SSH
+  hosts: windows_ssh
+  gather_facts: no
+  tasks:
+    - name: Wykonaj ping
+      win_command: ping 1.1.1.1
+      register: ping_output
+
+    - name: Wyświetl wynik ping
+      debug:
+        var: ping_output.stdout_lines

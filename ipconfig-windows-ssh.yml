@@ -1,0 +1,13 @@
+---
+- name: Uruchom ipconfig na Windows przez SSH
+  hosts: windows_ssh
+  gather_facts: no
+
+  tasks:
+    - name: Uruchom polecenie ipconfig
+      shell: ipconfig
+      register: ipconfig_output
+
+    - name: Wyświetl wynik ipconfig
+      debug:
+        var: ipconfig_output.stdout

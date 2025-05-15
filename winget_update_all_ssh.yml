@@ -1,0 +1,12 @@
+---
+- name: Uruchom winget update all na Windows przez SSH
+  hosts: windows_ssh
+  gather_facts: no
+  tasks:
+    - name: Wykonaj winget update all
+      win_command: winget update --all
+      register: winget_output
+
+    - name: Wyświetl wynik winget update all
+      debug:
+        var: winget_output.stdout_lines

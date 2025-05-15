@@ -4,10 +4,11 @@
   gather_facts: no
 
   tasks:
-    - name: Uruchom polecenie ipconfig
-      shell: ipconfig
-      register: ipconfig_output
+    - name: Uruchom PowerShell script
+      shell: |
+        powershell.exe -Command "ipconfig /all"
+      register: output
 
-    - name: Wyświetl wynik ipconfig
+    - name: Wyświetl wynik
       debug:
-        var: ipconfig_output.stdout
+        var: output.stdout

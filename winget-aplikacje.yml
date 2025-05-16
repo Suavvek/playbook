@@ -1,0 +1,32 @@
+---
+- name: Instalacja aplikacji na Windows przez SSH (winget)
+  hosts: windows_ssh
+  gather_facts: no
+
+  tasks:
+    - name: Zainstaluj OpenVPN Connect
+      win_command: winget install --id OpenVPNTechnologies.OpenVPNConnect -e --accept-package-agreements --accept-source-agreements
+      register: openvpn_output
+      ignore_errors: yes
+
+    - name: Pokaż wynik instalacji OpenVPN Connect
+      debug:
+        var: openvpn_output.stdout_lines
+
+    - name: Zainstaluj Firefox
+      win_command: winget install --id Mozilla.Firefox -e --accept-package-agreements --accept-source-agreements
+      register: firefox_output
+      ignore_errors: yes
+
+    - name: Pokaż wynik instalacji Firefox
+      debug:
+        var: firefox_output.stdout_lines
+
+    - name: Zainstaluj Notepad++
+      win_command: winget install --id Notepad++.Notepad++ -e --accept-package-agreements --accept-source-agreements
+      register: notepadpp_output
+      ignore_errors: yes
+
+    - name: Pokaż wynik instalacji Notepad++
+      debug:
+        var: notepadpp_output.stdout_lines

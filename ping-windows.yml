@@ -4,7 +4,7 @@
   gather_facts: no
   tasks:
     - name: Wykonaj ping
-      win_command: ping 1.1.1.1 >> c:\test_ping.txt
+      win_command: ping 1.1.1.1
       register: ping_output
 
     - name: Wyświetl wynik ping
